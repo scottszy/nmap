@@ -47,6 +47,9 @@ PortR="$(eval echo \$${range})"
 touch ${IP}.txt
 rm ${IP}.txt
 
+echo "Scan started at"
+date
+
 echo "Running Ack"
 echo "-----------------------" >> ${IP}.txt
 echo "\e[46m           ACK         \e[0m  " >> ${IP}.txt
