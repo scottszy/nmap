@@ -44,8 +44,9 @@ IP="$(eval echo \$${target})"
 
 range="Port${k}"
 PortR="$(eval echo \$${range})"
-rm ${IP}.txt
 touch ${IP}.txt
+rm ${IP}.txt
+
 echo "Running Ack"
 echo "-----------------------" >> ${IP}.txt
 echo "\e[46m           ACK         \e[0m  " >> ${IP}.txt
