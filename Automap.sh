@@ -41,122 +41,125 @@ do
 target="Target${k}"
 IP="$(eval echo \$${target})"
 
+dateTime=$(date +"%b_%d_%Y_%H_%M_%S")
+fileName="${IP}_${dateTime}"
+#echo ${fileName}
 
 range="Port${k}"
 PortR="$(eval echo \$${range})"
-touch ${IP}.txt
-rm ${IP}.txt
+#touch ${fileName}.txt
+#rm ${fileName}.txt
 echo " "
 echo "Scan started at"
 date
 echo " "
 echo "Running Ack"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m           ACK         \e[0m  " >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m           ACK         \e[0m  " >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sA ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report"  | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sA ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report"  | tee -a ${fileName}.txt
 
 echo "Running FIN"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m          FIN          \e[0m " >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m          FIN          \e[0m " >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sF ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sF ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 echo "Running NULL"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m         NULL          \e[0m " >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt 
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m         NULL          \e[0m " >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt 
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sN ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sN ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 echo "Running SYN"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m         SYN           \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt 
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m         SYN           \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt 
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sS ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sS ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 echo "Running CONNECT"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m       CONNECT         \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt 
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m       CONNECT         \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt 
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sT ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sT ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 echo "Running Window"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m        WINDOW         \e[0m " >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m        WINDOW         \e[0m " >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sW ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sW ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 
 echo "Running XMAS"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m         XMAS          \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt 
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m         XMAS          \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt 
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sX ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sX ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 echo "Running MAIMON"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m        MAIMON         \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m        MAIMON         \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sM ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sM ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 
 echo "Running UDP"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m          UDP          \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m          UDP          \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -p ${PortR} -oG ${IP}.gnmap -sU ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap -sU ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 
 
 echo "Running Protocol"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m       PROTOCOL        \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m       PROTOCOL        \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -sO -oG ${IP}.gnmap ${Vuln} ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -sO -oG ${fileName}.gnmap ${Vuln} ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
 echo "Running Basic scan"
-echo "-----------------------" >> ${IP}.txt
-echo "\e[46m  Normal Scan        \e[0m" >> ${IP}.txt
-echo "-----------------------" >> ${IP}.txt
+echo "-----------------------" >> ${fileName}.txt
+echo "\e[46m  Normal Scan        \e[0m" >> ${fileName}.txt
+echo "-----------------------" >> ${fileName}.txt
 
-nmap -p ${PortR} -oG ${IP}.gnmap ${Vuln} ${Vers} ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${IP}.txt
+nmap -p ${PortR} -oG ${fileName}.gnmap ${Vuln} ${Vers} ${IP} | grep -v -e "IP" -e "Not" -e "Host" -e "Starting" -e "All" -e "report" | tee -a ${fileName}.txt
 
 
 
-echo "Your results should be in ${IP}.txt and ${IP}.gnmap" 
-##echo "${IP}"
+echo "Your results should be in ${fileName}.txt and ${fileName}.gnmap" 
+##echo "${fileName}"
 done
